@@ -14,12 +14,12 @@ const containerEl = document.getElementById('container');
 const backBtn = document.getElementById('back');
 
 // URL’dan id olamiz
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(document.location.search);
 const carId = params.get('id');
 
 if (!carId) {
   alert("Car ID topilmadi!");
-  window.location.href = "index.html";
+  document.location.href = "index.html";
 }
 
 // Loaderni ko‘rsatish
@@ -55,5 +55,5 @@ function showCar(car) {
 
 // Back button
 backBtn.addEventListener('click', () => {
-  window.location.href = "index.html";
+  document.location.href = "index.html";
 });
