@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+    <link rel="stylesheet" href="./css/output.css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="min-h-screen w-full bg-gradient-to-r from-red-500 to-blue-700 ">
+  <header>
+    <div class="navbar bg-primary bg-amber-300 text-primary-content">
+  <button class="btn btn-ghost text-xl text-black">Cars Ads</button>
+</div>
+  </header>
+    <main>
+        <section class="pt-25 mx-auto max-w-250">
+            <div class="flex gap-4 pb-20">
+                <button class="btn btn-info" id="prev">
+                    Prev
+                </button>
+                <button class="btn btn-info" id="next">
+                    Next
+                </button>
+
+                <div class="w-full flex justify-end">
+                    <!-- You can open the modal using ID.showModal() method -->
+                    <button class="btn btn-active text-white bg-green-600" onclick="my_modal_3.showModal()">+ Add</button>
+                    <dialog id="my_modal_3" class="modal">
+                        <div class="modal-box flex flex-col items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-amber-500 text-white">
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <h3 class="text-lg font-bold">Yangi mashina qo'shish!</h3>
+                            <p class="py-4">Mashina ma'lumotlarni qo'shing!</p>
+
+                            <label class="input text-black bg-amber-50">
+                                Car name :
+                                <input type="text" class="grow" placeholder="name" />
+                            </label>
+                            <label class="input bg-amber-300">
+                                Trim :
+                                <input type="text" class="grow" placeholder="trim" />
+                            </label>
+                            <label class="input bg-amber-900">
+                                Generation :
+                                <input type="text" class="grow" placeholder="generation" />
+                            </label>
+                            <label class="input bg-blue-400">
+                                Year :
+                                <input type="number" min="2026" max="1994" class="grow" placeholder="year" />
+                            </label>
+                            <label class="input bg-blue-950">
+                                Color :
+                                <input type="color" class="grow" placeholder="color" />
+                            </label>
+                            <label class="input bg-emerald-500">
+                                ColorName :
+                                <input type="text" class="grow" placeholder="colorName" />
+                            </label>
+                            <label class="input bg-cyan-950">
+                                Category :
+                                <input type="text" class="grow" placeholder="category" />
+                            </label>
+                            <label class="input bg-emerald-600">
+                                DoorCount :
+                                <input type="number" class="grow" placeholder="doorCount" />
+                            </label>
+                            <label class="input bg-emerald-950">
+                                SeatCount :
+                                <input type="number" class="grow" placeholder="seatCount" />
+                            </label>
+                            <label class="input bg-green-500">
+                                MaxSpeed :
+                                <input type="number" class="grow" placeholder="maxSpeed" />
+                                <span class="badge badge-neutral badge-xs">km/h</span>
+                            </label>
+                            <label class="input bg-green-900">
+                                Acceleration :
+                                <input type="number" class="grow" placeholder="acceleration" />
+                                <span class="badge badge-neutral badge-xs">km/h : s</span>
+                            </label>
+                            <label class="input bg-neutral-400">
+                                Engine :
+                                <input type="text, number" class="grow" placeholder="engine" />
+                            </label>
+                            <label class="input bg-neutral-900">
+                                Horsepower :
+                                <input type="number" min="38" max="1000" class="grow" placeholder="horsepower" />
+                            </label>
+                            <label class="input bg-lime-600">
+                                FuelType :
+                                <input type="text" class="grow" placeholder="fuelType" />
+                            </label>
+                            <label class="input bg-lime-900">
+                                FuelConsumption :
+                                <input type="text" class="grow" placeholder="fuelConsumption" />
+                                <span class="badge badge-neutral badge-xs">L / km/h</span>
+                            </label>
+                            <label class="input bg-neutral-500">
+                                Country :
+                                <input type="text" class="grow" placeholder="country" />
+                            </label>
+                            <label class="input bg-neutral-900">
+                                Description :
+                                <input type="text" class="grow" placeholder="description" />
+                            </label>
+                            <label class="input bg-rose-900">
+                                ID :
+                                <input type="number" class="grow" placeholder="id" />
+                            </label>
+                            <button id="submitButton" class="btn btn-wide text-white bg-sky-900">Tasdiqlash!</button>
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+
+            <div id="container" class="flex flex-wrap justify-between items-center gap-5"></div>
+            <div id="loader" class="flex flex-wrap justify-between items-center gap-5"></div>
+
+            <template id="templateCard">
+                <div class="card bg-base-300 w-96 bg-gray-700 text-white shadow-2xl">
+                    <div class="card-body">
+                        <h2 class="card-title" id="card-title"></h2>
+                        <p id="card-text"></p>
+                        <div class="card-actions justify-end">
+                            <div class="tooltip" data-tip="Delete">
+                                <button class="btn js-delete-button btn-primary bg-red-700 text-white">
+                                    <svg class="pointer-events-none" width="15" height="15" viewBox="0 0 15 15"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.5 1C5.22386 1 5 1.22386 5 1.5C5 1.77614 5.22386 2 5.5 2H9.5C9.77614 2 10 1.77614 10 1.5C10 1.22386 9.77614 1 9.5 1H5.5ZM3 3.5C3 3.22386 3.22386 3 3.5 3H5H10H11.5C11.7761 3 12 3.22386 12 3.5C12 3.77614 11.7761 4 11.5 4H11V12C11 12.5523 10.5523 13 10 13H5C4.44772 13 4 12.5523 4 12V4L3.5 4C3.22386 4 3 3.77614 3 3.5ZM5 4H10V12H5V4Z"
+                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="tooltip" data-tip="Info">
+                                <button class="btn btn-primary js-info-button bg-blue-700 text-white">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z"
+                                            fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Loader -->
+            <template id="templateLoader">
+                <div class="card bg-base-100 w-96">
+                    <div class="card-body">
+                        <h2 class="card-title skeleton w-75 h-6.75" id="card-title"></h2>
+                        <p id="card-text" class="skeleton w-75 h-5"></p>
+                        <div class="card-actions justify-end pt-5">
+                            <div class="skeleton w-12 h-10"></div>
+                            <div class="skeleton w-12 h-10"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </section>
+    </main>
+    <!-- script -->
+    <script type="module" src="./js/app.js"></script>
+</body>
+</html>
