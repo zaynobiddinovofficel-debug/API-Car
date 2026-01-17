@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Details</title>
-    <link rel="stylesheet" href="./css/output.css" />
-  </head>
-  <body>
-    <div class="max-w-[800px] mx-auto flex flex-col gap-[30px]" id="container">
-      <h1 id="title" class="text-black text-[50px] font-bold"></h1>
-      <p id="trim" class="text-black text-[20px] font-bold"></p>
-      <p id="generation" class="text-black text-[20px] font-bold"></p>
-      <p id="year" class="text-black text-[20px] font-bold"></p>
-      <div class="flex gap-[5px]">
-        <p id="color" class="text-black text-[20px] font-bold"><span></span></p>
-        <p id="colorName" class="text-black text-[20px] font-bold"></p>
-      </div>
-      
-      <p id="category" class="text-black text-[20px] font-bold"></p>
-      <p id="maxSpeed" class="text-black text-[20px] font-bold"></p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Details</title>
+  <link rel="stylesheet" href="./css/output.css" />
+</head>
+
+<body class="min-h-screen w-full bg-gradient-to-r from-amber-400 to-blue-700 pt-10">
+
+  <button id="backBtn"
+    class="self-start ml-6 mt-6 bg-black text-white px-6 py-2 rounded-xl hover:bg-gray-800 transition">
+    ← Orqaga
+  </button>
+
+
+  <div
+    class="max-w-[800px] mx-auto flex flex-col items-center justify-center rounded-4xl pb-4 bg-amber-100 border-solid shadow-2xl gap-[30px]"
+    id="container">
+    <h1 id="title" class="text-black text-[50px] font-bold"></h1>
+    <p id="trim" class="text-black text-[20px] font-bold"></p>
+    <p id="generation" class="text-black text-[20px] font-bold"></p>
+    <p id="year" class="text-black text-[20px] font-bold"></p>
+    <div class="flex gap-[5px]">
+      <p id="color" class="text-black text-[20px] font-bold"><span></span></p>
+      <p id="colorName" class="text-black text-[20px] font-bold"></p>
     </div>
 
-    <div class="max-w-[800px] block mx-auto flex flex-col gap-[30px]" id="loader">
-      <div class="w-[300px] skeleton h-5"></div>
-      <div class="w-[100px] skeleton h-5"></div>
-      <div class="w-[100px] skeleton h-5"></div>
-      <div class="w-[100px] skeleton h-5"></div>
-      <div class="w-[100px] skeleton h-5"></div>
-      <div class="w-[100px] skeleton h-5"></div>
-    </div>
+    <p id="category" class="text-black text-[20px] font-bold"></p>
+    <p id="maxSpeed" class="text-black text-[20px] font-bold"></p>
+  </div>
+
+  <div class="max-w-[800px] block mx-auto flex flex-col gap-[30px]" id="loader">
+    <div class="w-[300px] skeleton h-5"></div>
+    <div class="w-[100px] skeleton h-5"></div>
+    <div class="w-[100px] skeleton h-5"></div>
+    <div class="w-[100px] skeleton h-5"></div>
+    <div class="w-[100px] skeleton h-5"></div>
+    <div class="w-[100px] skeleton h-5"></div>
+  </div>
+
+  <!-- Batafsil sahifa -->
+  <div id="detail" class="hidden p-6">
+    <button id="back" class="mb-6 bg-black text-white px-4 py-2 rounded">
+      ← Orqaga
+    </button>
 
     <!-- scripts  -->
     <script src="./js/details.js"></script>
     <!-- <script src="./js/app.js"></script> -->
-  </body>
+</body>
+
 </html>
